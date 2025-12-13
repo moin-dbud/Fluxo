@@ -16,7 +16,7 @@ const ContactSection = () => {
         };
 
         try {
-            const res = await fetch("https://fluxo-backend.onrender.com/api/contact", {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/contact`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
