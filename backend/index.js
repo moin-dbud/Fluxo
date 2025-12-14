@@ -37,9 +37,26 @@ app.post("/api/contact", async (req, res) => {
       to: "fluxo.digital.co@gmail.com",
       subject: `New Contact Message from ${name}`,
       html: `
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p>${message}</p>
+        <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+                    <div style="max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f9f9f9;">
+                        <h2 style="color: #2563eb; border-bottom: 2px solid #2563eb; padding-bottom: 10px;">
+                            New Contact Form Submission
+                        </h2>
+                        <div style="background-color: white; padding: 20px; border-radius: 8px; margin-top: 20px;">
+                            <p><strong style="color: #555;">Name:</strong> ${name}</p>
+                            <p><strong style="color: #555;">Email:</strong> ${email}</p>
+                            <p><strong style="color: #555;">Message:</strong></p>
+                            <div style="background-color: #f5f5f5; padding: 15px; border-left: 4px solid #2563eb; margin-top: 10px;">
+                                ${message}
+                            </div>
+                        </div>
+                        <div style="margin-top: 20px; padding: 15px; background-color: #e0f2fe; border-radius: 8px;">
+                            <p style="margin: 0; font-size: 12px; color: #0369a1;">
+                                This email was sent from the Fluxo website contact form.
+                            </p>
+                        </div>
+                    </div>
+                </body>
       `,
     });
 
