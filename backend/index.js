@@ -23,11 +23,37 @@ const transporter = nodemailer.createTransport({
 
 // Contact form route
 app.post("/api/contact", async (req, res) => {
-  const { name, email, message } = req.body;
+  try {
+    const { name, email, message } = req.body;
 
-  if (!name || !email || !message) {
-    return res.status(400).json({ success: false, message: "All fields required" });
+    if (!name || !email || !message) {
+      return res.status(400).json({
+        success: false,
+        message: "All fields required",
+      });
+    }
+
+    // 🔴 TEMPORARILY COMMENT EMAIL SENDING
+    /*
+    await transporter.sendMail({...});
+    await transporter.sendMail({...});
+    */
+
+    console.log("New contact message:", { name, email, message });
+
+    return res.status(200).json({
+      success: true,
+      message: "Message received successfully",
+    });
+  } catch (err) {
+    console.error("CONTACT ERROR:", err);
+    return res.status(500).json({
+      success: false,
+      message: "Server error",
+    });
   }
+});
+
 
   try {
     // 1️⃣ Email to YOU
@@ -87,7 +113,7 @@ app.post("/api/contact", async (req, res) => {
     console.error(error);
     res.status(500).json({ success: false, message: "Email failed to send" });
   }
-});
+
 
 console.log("EMAIL:", process.env.EMAIL_USER);
 console.log("PASS EXISTS:", !!process.env.EMAIL_PASS);
