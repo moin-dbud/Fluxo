@@ -11,7 +11,10 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: "*", // later restrict to your frontend domain
+  methods: ["GET", "POST"],
+}));
 app.use(express.json());
 
 // Health check
@@ -31,7 +34,7 @@ app.post("/api/contact", async (req, res) => {
       });
     }
 
-    // Email to YOU
+    // Email to YOU+++++
     await resend.emails.send({
       from: "Fluxo <onboarding@resend.dev>",
       to: "fluxo.digital.co@gmail.com",
@@ -60,15 +63,30 @@ app.post("/api/contact", async (req, res) => {
       `,
     });
 
-    // Auto reply to USER
+    // 2️⃣ Auto-reply to USER
     await resend.emails.send({
       from: "Fluxo <onboarding@resend.dev>",
       to: email,
       subject: "Thanks for contacting Fluxo",
       html: `
-        <p>Hi ${name},</p>
-        <p>Thanks for reaching out to Fluxo. We’ll get back to you within 24 hours.</p>
-        <p>– Team Fluxo</p>
+        <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+                    <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
+                        <h2 style="color: #2563eb;">Thank You for Reaching Out!</h2>
+                        <p>Hi ${name},</p>
+                        <p>We have received your message and appreciate you contacting Fluxo.</p>
+                        <p>Our team will review your inquiry and get back to you as soon as possible, typically within 24 hours.</p>
+                        <div style="background-color: #f0f9ff; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                            <p style="margin: 0; font-weight: bold; color: #0369a1;">In the meantime, feel free to:</p>
+                            <ul style="margin-top: 10px;">
+                                <li>Connect with us on WhatsApp for immediate assistance</li>
+                                <li>Explore our services on our website</li>
+                            </ul>
+                        </div>
+                        <p>Best regards,<br><strong>The Fluxo Team</strong></p>
+                        <hr style="border: none; border-top: 1px solid #e5e5e5; margin: 20px 0;">
+                        <p style="font-size: 12px; color: #888;">This is an automated confirmation email from Fluxo.</p>
+                    </div>
+                </body>
       `,
     });
 
