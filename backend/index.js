@@ -25,9 +25,9 @@ app.get("/", (req, res) => {
 // Contact form route
 app.post("/api/contact", async (req, res) => {
   try {
-    const { name, email, message } = req.body;
+    const { name, number, email, message } = req.body;
 
-    if (!name || !email || !message) {
+    if (!name || !number || !email || !message) {
       return res.status(400).json({
         success: false,
         message: "All fields are required",
@@ -47,6 +47,7 @@ app.post("/api/contact", async (req, res) => {
                         </h2>
                         <div style="background-color: white; padding: 20px; border-radius: 8px; margin-top: 20px;">
                             <p><strong style="color: #555;">Name:</strong> ${name}</p>
+                            <p><strong style="color: #555;">Phone Number:</strong> ${number}</p>
                             <p><strong style="color: #555;">Email:</strong> ${email}</p>
                             <p><strong style="color: #555;">Message:</strong></p>
                             <div style="background-color: #f5f5f5; padding: 15px; border-left: 4px solid #2563eb; margin-top: 10px;">
