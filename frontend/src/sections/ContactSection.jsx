@@ -11,6 +11,7 @@ const ContactSection = () => {
 
         const formData = {
             name: e.target.name.value,
+            number: e.target.number.value,
             email: e.target.email.value,
             message: e.target.message.value,
         };
@@ -87,6 +88,14 @@ const ContactSection = () => {
                                 type="text"
                                 name="name"
                                 placeholder="Your Name"
+                                required
+                                 className="w-full px-4 py-3 rounded-lg border border-gray-400 focus:outline-none focus:ring-1 focus:ring-blue-400"
+                            />
+
+                            <input
+                                type="number"
+                                name="number"
+                                placeholder="Your Mobile Number"
                                 required
                                  className="w-full px-4 py-3 rounded-lg border border-gray-400 focus:outline-none focus:ring-1 focus:ring-blue-400"
                             />
