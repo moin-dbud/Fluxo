@@ -18,7 +18,7 @@ const Hero = () => {
           <Button
             variant="primary"
             target="_blank"
-            href="https://wa.me/7410761326"
+            href="https://cbl.link/EQBazBT"
           >
             
              💬 Chat on WhatsApp
